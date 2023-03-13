@@ -39,6 +39,18 @@ Beberapa pengguna potensialnya adalah sebagai berikut:
 
 ## Use-Case Diagram
 
+ <a href="../assets/img/use-case.jpg">
+            <img class="er-img" src="../assets/img/use-case.jpg" alt="Use Case Diagram" style="width: 250px;">
+          </a>
+
 ## Entity Relationship Diagram
 
+<a href="../assets/img/ER.png">
+            <img class="er-img" src="../assets/img/ER.png" alt="ER Diagram" style="width: 250px;">
+          </a>
+
 ## Gantt Chart
+
+<a href="../assets/img/gant.png">
+            <img class="gant-img" src="../assets/img/gant.png" alt="Gant Chart" style="width: 250px;">
+</a>
