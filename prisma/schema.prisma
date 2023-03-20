@@ -6,50 +6,41 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  _id        String @id @default(auto()) @map("_id") @db.ObjectId
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  email     String
+  email     String @unique
   password  String
   address   String
   phone     String
-  booksRead ReadProgress[]
+  bookIDs   String[] @db.ObjectId
+  booksRead Book[] @relation(fields: [bookIDs], references: [id])
 }
 
 model Genre {
-  _id String
-  name String
-  books GenresOnBooks[]
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  bookIDs   String[] @db.ObjectId
+  books Book[] @relation(fields: [bookIDs], references: [id])
 }
 
 model Book {
-  _id             String @id @default(auto()) @map("_id") @db.ObjectId
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
   book_title      String
   ISBN            String
-  genres          GenresOnBooks[]
   author          String
   publisher       String
   year_published  String
   cover_link      String
-}
+  like_count      Int     @default(0)
 
-model ReadProgress {
-  user              User @relation(fields: [userId], references: [_id])
-  userId            String 
-  book              Book @relation(fields: [bookId], references: [_id])
-  bookId            String
-  time_spent        Int 
-  last_page_visited Int
-  is_complete
-}
+  genreIDs   String[] @db.ObjectId
+  genres Genre[] @relation(fields: [genreIDs], references: [id])
 
-model GenresOnBooks {
-  book    Book @relation(fields: [bookId], references: [_id])
-  bookId  String
-  genre   Genre @relation(fields: [genreId], references: [_id])
-  genreId String
+  userIDs   String[] @db.ObjectId
+  users User[] @relation(fields: [userIDs], references: [id])
 }
