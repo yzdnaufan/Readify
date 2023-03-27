@@ -34,7 +34,7 @@ model Book {
   ISBN            String
   author          String
   publisher       String
-  year_published  String
+  year_published  Int
   cover_link      String
   like_count      Int     @default(0)
 
