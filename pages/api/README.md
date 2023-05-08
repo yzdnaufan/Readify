@@ -1,5 +1,10 @@
 # This is API documentation for Bookshelf Project
 
+## Checklist
+
+- [ ] Admin API Endpoint
+- [ ] User API Endpoint
+
 ## Table of Contents
 
 - [Base URL](#base-url)
