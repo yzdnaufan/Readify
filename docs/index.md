@@ -54,3 +54,186 @@ Beberapa pengguna potensialnya adalah sebagai berikut:
 <a href="img/gant.png">
             <img class="gant-img" src="img/gant.png" alt="Gant Chart" style="width: 250px;">
 </a>
+
+# API Documentation
+
+## Base URL
+
+>`https://{deployment-url}/api/v1/`
+
+this API will be divided into 2 section, which is for admin API and for general user API
+
+-----
+
+## Admin API Endpoint
+
+-----
+
+### GET `/user`
+
+this will return all user with their encrypted password and their data.
+
+request :
+
+    GET /user
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### GET `/user/:id`
+
+this will return user by selected `:id`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### POST `/books`
+
+-----
+
+## General User API Endpoints
+
+-----
+
+### POST `/register/user/`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### POST `/login`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### GET `/recommendation`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### GET `/books`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### GET `/books/:id`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### GET `/books/content/:id`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### POST Reading List book(s) by `:id`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### PUT/EDIT Reading List Book(s) by `:id`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+### DELETE Reading List Book(s) by `:id`
+
+request :
+
+    this is req
+
+response :
+
+    asdasd
+
+error :
+
+    asdasda
+
+## DELETE
+
