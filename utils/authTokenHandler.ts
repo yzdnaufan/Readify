@@ -3,9 +3,6 @@ import { getSession } from "next-auth/react";
 
 export async function  authenticateToken (req, res, next){    
     try {
-
-
-
         let token;
 
         //get jwt token from session
@@ -26,8 +23,6 @@ export async function  authenticateToken (req, res, next){
         } else{
             next();
         }
-
-        
     } 
     catch (error) {
         //token is invalid

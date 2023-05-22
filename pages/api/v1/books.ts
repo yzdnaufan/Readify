@@ -16,6 +16,7 @@ export default function handler(req, res){
             //TODO fix integration with prisma
             // const books = await prisma.book.findMany();
             // return res.status(200).json({books: books});
+            
             //mock data
             res.status(200).json({books: booksData});
         } catch (error) {
