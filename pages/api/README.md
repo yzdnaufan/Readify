@@ -11,19 +11,19 @@
 
 -  [Base URL](#base-url)
 - [Admin API Endpoint](#admin-api-endpoint-need-authentication)
-  - [] [GET `/user`](#get-user)
-  - [] [GET `/user/[id]`](#get-userid)
-  - [] [POST `/books`](#post-books)
-  - [] [PUT `/books/[book_id]`](#put-booksbook_id)
+  - [ ] [GET `/user`](#get-user)
+  - [ ] [GET `/user/[id]`](#get-userid)
+  - [ ] [POST `/books`](#post-books)
+  - [ ] [PUT `/books/[book_id]`](#put-booksbook_id)
 
 - [User API Endpoint](#general-user-api-endpoint)
-    - [] [POST `/register/user`](#post-registeruser)
+    - [ ] [POST `/register/user`](#post-registeruser)
     - [x] [POST `/login`](#post-login)
-    - [] [GET `/recommendation`](#get-recommendation)
+    - [ ] [GET `/recommendation`](#get-recommendation)
     - [x] [GET `/books/`](#get-books)
-    - [] [GET `/books/[id]`](#get-booksid)
-    - [] [POST `/readinglist`](#post-readinglist-books-id)
-    - [] [PUT `/readinglist/[id]`](#put-readinglistid)
+    - [ ] [GET `/books/[id]`](#get-booksid)
+    - [ ] [POST `/readinglist`](#post-readinglist-books-id)
+    - [ ] [PUT `/readinglist/[id]`](#put-readinglistid)
 
 
 ## Base URL
