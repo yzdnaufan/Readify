@@ -2,8 +2,10 @@
 
 ## Checklist
 
-- [ ] Admin API Endpoint
-- [ ] User API Endpoint
+- [x] Admin API Endpoint Design
+- [ ] Admin API Endpoint Implementation
+- [x] User API Endpoint Design
+- [ ] User API Endpoint Implementation
 
 ## Table of Contents
 
@@ -13,12 +15,15 @@
   - [GET `/user/[id]`](#get-userid)
   - [POST `/books`](#post-books)
   - [PUT `/books/[book_id]`](#put-booksbook_id)
-  - [DELETE `/books/[book_id]`](#delete-booksbook_id)
-- [User API Endpoint](#user-api-endpoint)
 
-//TODO : add user API endpoint
-- [ERROR CODE](#error-code)
-
+- [User API Endpoint](#general-user-api-endpoint)
+    - [POST `/register/user`](#post-registeruser)
+    - [POST `/login`](#post-login)
+    - [GET `/recommendation`](#get-recommendation)
+    - [GET `/books/`](#get-books)
+    - [GET `/books/[id]`](#get-booksid)
+    - [POST `/readinglist`](#post-readinglist-books-id)
+    - [PUT `/readinglist/[id]`](#put-readinglistid)
 
 
 ## Base URL
@@ -258,7 +263,7 @@ response :
 
 ```json
     {
-            "statusCode":"202"
+            "statusCode":"202",
             "statusMessage":"Data deleted"
     }
 ```
@@ -299,74 +304,189 @@ except for given methods above, default response for any other method is :
 
 ### POST `/register/user/`
 
-request :
+this is for registering user into our database.
 
-    this is req
+request :
+```json
+    POST /register/user
+    Content-Type: application/json
+
+{
+  "username": "john_doe",
+  "email": "john.doe@example.com",
+  "password": "secretpassword"
+}
+```
 
 response :
 
-    asdasd
+```json
+{
+    "statusCode": "201",
+    "message": "User registered successfully"
+}
+```
 
 error :
-
-    asdasda
+```json
+{
+    "statusCode": "400",
+    "error": "Invalid request payload"
+}
+```
 
 ### POST `/login`
 
+this endpoint allow user to authenticate and get their session token.
+
 request :
+```json
+POST /login
+Content-Type: application/json
 
-    this is req
-
+{
+  "username": "john_doe",
+  "password": "secretpassword"
+}
+```
 response :
-
-    asdasd
+```json
+{
+    "statusCode": "200",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MjMxMjMxMjMxLCJpYXQiOjE2MzExNjE5NTYsImV4cCI6MTYzMTI0NTM1Nn0.7C5TpewGVLd3n6ZkDMYF02Pn6hSWu0D3BUsJy0eNyzA"
+}
+```
 
 error :
-
-    asdasda
-
+```json
+{
+    "statusCode": "400",
+    "error": "Invalid username or password"
+}
+```
 ### GET `/recommendation`
 
+this API will get a recommendation based on the user's reading list.
+
 request :
 
-    this is req
+```
+    GET /recommendations
+    Authorization: Bearer <token>
+```
 
 response :
 
-    asdasd
+```json
+{
+    "statusCode": "200",
+    "recommendations": [
+        {
+            "id": 1,
+            "title": "The Catcher in the Rye",
+            "author": "J.D. Salinger",
+            "genre": "Fiction",
+            "description": "The story of Holden Caulfield, a teenager from New York City."
+        },
+        {
+            "id": 2,
+            "title": "To Kill a Mockingbird",
+            "author": "Harper Lee",
+            "genre": "Fiction",
+            "description": "The story of a young girl and her father, a lawyer, in Alabama."
+        }
+    ]
+}
+
+```
 
 error :
 
-    asdasda
+```json
+    {
+        "errorCode": "403",
+        "errorMessage": "Unauthorized Access"
+    }
+```
+
 
 ### GET `/books`
 
-request :
+this will get all books from the server. Details :
 
-    this is req
+|attributes|description|
+|-----|-----|
+|book_id|refer to book_id at goodreads.com, this should in `int`|
+|image_url|could be any image URL for book covers, as long as it is not a temporary URL|
+
+request :
+```
+    GET /books
+    Authentication: Bearer <token>
+```
 
 response :
-
-    asdasd
+```json
+{ 
+    {
+        "original_title":"50 Shades of Grey",
+        "book_id":"10818853",
+        "isbn":"9781612130293",
+        "authors": "E.L. James",
+        "original_publication_year":"2011",
+        "language-code":"en-US",
+        "image_url":"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1385207843i/10818853.jpg"
+    },
+    {...}
+}
+```
 
 error :
 
-    asdasda
-
+```json
+    {
+        "errorCode": "403",
+        "errorMessage": "Unauthorized Access"
+    }
+```
 ### GET `/books/[id]`
 
-request :
+this will get a book from the server by id. Details :
 
-    this is req
+request :
+```
+    GET /books/10818853
+    Authentication: Bearer <token>
+```
 
 response :
-
-    asdasd
-
+```json
+{
+    "original_title":"50 Shades of Grey",
+    "book_id":"10818853",
+    "isbn":"9781612130293",
+    "authors": "E.L. James",
+    "original_publication_year":"2011",
+    "language-code":"en-US",
+    "image_url":"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1385207843i/10818853.jpg"
+}
+```
 error :
 
-    asdasda
 
+```json
+    {
+        "errorCode": "403",
+        "errorMessage": "Unauthorized Access"
+    }
+```
+```json
+    {
+        "errorCode": "404",
+        "errorMessage": "Not Found"
+    }
+```
+<!-- 
 ### GET `/books/content/[id]`
 
 request :
@@ -379,48 +499,126 @@ response :
 
 error :
 
-    asdasda
+```json
+    {
+        "errorCode": "403",
+        "errorMessage": "Unauthorized Access"
+    }
+``` -->
 
 ### POST Reading List book(s) by `[id]`
 
+this will post a book to user's reading list. Details :
+
 request :
 
-    this is req
+```json
+POST /reading-lists
+Authentication: Bearer <token>
+Content-Type: application/json
 
+    {
+        "name": "My Reading List",
+        "books": [1, 2, 3]
+    }
+
+```
 response :
-
-    asdasd
-
+```json
+    {
+        "statusCode": "201",
+        "message": "Reading list created successfully",
+        "readingListId": 1
+    }
+```
 error :
 
-    asdasda
+```json
+    {
+        "errorCode": "400",
+        "error": "Invalid request payload"
+    }
+```
+
+
+```json
+    {
+        "errorCode": "403",
+        "errorMessage": "Unauthorized Access"
+    }
+```
+
 
 ### PUT/EDIT Reading List Book(s) by `[id]`
 
+this allow user to edit its reading list by its id.
+
 request :
-
-    this is req
-
+```json
+PUT /reading-lists/1
+Authentication: Bearer <token>
+Content-Type: application/json
+    {
+        "name": "Updated Reading List",
+        "books": [1, 4, 5]
+    }
+```
 response :
-
-    asdasd
+```json
+    {
+        "statusCode": "200",
+        "message": "Reading list updated successfully"
+    }
+```
 
 error :
 
-    asdasda
+```json
+    {
+        "errorCode": "403",
+        "errorMessage": "Unauthorized Access"
+    }
+```
+
+```json
+    {
+        "errorCode": "404",
+        "errorMessage": "Reading list ID Not Found"
+    }
+```
 
 ### DELETE Reading List Book(s) by `[id]`
 
+This endpoint allows users to delete a reading list by its ID.
+
 request :
 
-    this is req
+```json
+DELETE /reading-lists/1
+Authentication: Bearer <token>
+```
 
 response :
 
-    asdasd
+```json
+    {
+        "statusCode": "200",
+        "message": "Reading list deleted successfully"
+    }
+```
 
 error :
 
-    asdasda
+```json
+    {
+        "errorCode": "403",
+        "errorMessage": "Unauthorized Access"
+    }
+```
 
-## DELETE
+```json
+    {
+        "errorCode": "404",
+        "errorMessage": "Reading list ID Not Found"
+    }
+```
