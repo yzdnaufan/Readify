@@ -1,21 +1,15 @@
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from './queries';
 
 async function main() {
-  await prisma.$connect()
-  // Placeholder: meng-query data user dari database
-  // Ubah fungsi di bawah seperlunya
-  const allUsers = await prisma.user.findMany()
-  console.log(allUsers)
+  try {
+    await prisma.$connect();
+    // Use Prisma functions here
+    // ...
+  } catch (error) {
+    console.error('Error connecting to the database:', error);
+  } finally {
+    await prisma.$disconnect();
+  }
 }
 
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+main();

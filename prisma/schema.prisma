@@ -78,11 +78,19 @@ model Book {
   id              String    @id @default(auto()) @map("_id") @db.ObjectId
   book_title      String
   ISBN            String
+  ISBN13          String
   author          String
-  publisher       String
+  language_code   String
+  average_rating  Double    @default(0)
+  ratings_1       Int       @default(0)
+  ratings_2       Int       @default(0)
+  ratings_3       Int       @default(0)
+  ratings_4       Int       @default(0)
+  ratings_5       Int       @default(0)
   year_published  Int
-  cover_link      String
-  like_count      Int       @default(0)
+  image_url       String
+  small_image_url String
+  rating_count    Int       @default(0)
 
   genreIDs        String[]  @db.ObjectId
   genres          Genre[]   @relation(fields: [genreIDs], references: [id])
