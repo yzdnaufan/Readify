@@ -11,8 +11,8 @@
 
 -  [Base URL](#base-url)
 - [Admin API Endpoint](#admin-api-endpoint-need-authentication)
-  - [ ] [GET `/user`](#get-user)
-  - [ ] [GET `/user/[id]`](#get-userid)
+  - [x] [GET `/user`](#get-user)
+  - [x] [GET `/user/[id]`](#get-userid)
   - [ ] [POST `/books`](#post-books)
   - [ ] [PUT `/books/[book_id]`](#put-booksbook_id)
 
@@ -21,7 +21,7 @@
     - [x] [POST `/login`](#post-login)
     - [ ] [GET `/recommendation`](#get-recommendation)
     - [x] [GET `/books/`](#get-books)
-    - [ ] [GET `/books/[id]`](#get-booksid)
+    - [x] [GET `/books/[id]`](#get-booksid)
     - [ ] [POST `/readinglist`](#post-readinglist-books-id)
     - [ ] [PUT `/readinglist/[id]`](#put-readinglistid)
 
