@@ -13,13 +13,13 @@
 - [Admin API Endpoint](#admin-api-endpoint-need-authentication)
   - [x] [GET `/user`](#get-user)
   - [x] [GET `/user/[id]`](#get-userid)
-  - [ ] [POST `/books`](#post-books)
+  - [x] [POST `/books`](#post-books)
   - [ ] [PUT `/books/[book_id]`](#put-booksbook_id)
 
 - [User API Endpoint](#general-user-api-endpoint)
-    - [ ] [POST `/register/user`](#post-registeruser)
+    - [x] [POST `/register/user`](#post-registeruser)
     - [x] [POST `/login`](#post-login)
-    - [ ] [GET `/recommendation`](#get-recommendation)
+    - [x] [GET `/recommendation`](#get-recommendation)
     - [x] [GET `/books/`](#get-books)
     - [x] [GET `/books/[id]`](#get-booksid)
     - [ ] [POST `/readinglist`](#post-readinglist-books-id)
@@ -367,11 +367,12 @@ error :
 ### GET `/recommendation`
 
 this API will get a recommendation based on the user's reading list.
+Need username query parameter.
 
 request :
 
 ```
-    GET /recommendations
+    GET /recommendations?uname={{username}}
     Authorization: Bearer <token>
 ```
 
