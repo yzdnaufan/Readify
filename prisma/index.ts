@@ -1,15 +1,7 @@
-import { prisma } from './queries';
 
-async function main() {
-  try {
-    await prisma.$connect();
-    // Use Prisma functions here
-    // ...
-  } catch (error) {
-    console.error('Error connecting to the database:', error);
-  } finally {
-    await prisma.$disconnect();
-  }
-}
+import { PrismaClient } from "@prisma/client"
 
-main();
+const prisma = new PrismaClient() // || globalThis.prisma
+// if (process.env.NODE_ENV !== "production") globalThis.prisma = client
+
+export default prisma
