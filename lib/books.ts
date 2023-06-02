@@ -9,6 +9,7 @@ export const booksData = [
       authors: ['Author 1', 'Author 2'],
       original_publication_year: 2020,
       language_code: 'en',
+      average_rating: 4.5,
       image_url: 'https://example.com/book1.jpg',
     },
     {
@@ -18,6 +19,7 @@ export const booksData = [
       authors: ['Author 3', 'Author 4'],
       original_publication_year: 2018,
       language_code: 'en',
+      average_rating: 4.5,
       image_url: 'https://example.com/book2.jpg',
     },
     {
@@ -27,6 +29,7 @@ export const booksData = [
       authors: ['Author 5'],
       original_publication_year: 2021,
       language_code: 'en',
+      average_rating: 4.5,
       image_url: 'https://example.com/book3.jpg',
     },
   ];
