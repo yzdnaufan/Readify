@@ -96,8 +96,6 @@ function postBooksHandler(req,res){
             // const books = await prisma.book.create({
             //     data: bookObj
             // });
-            
-
 
             //return
             res.status(202).json({statusMessage: "Data Inputed"});
