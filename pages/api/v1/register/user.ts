@@ -1,6 +1,7 @@
 import { register, checkUsernameIsExist } from '../../../../prisma/userQueries';
+import applyCorsMiddleware from '../../cors';
 
-export default async function handler(req,res) {
+async function handler(req,res) {
     let password = req.body.password;
     let username = req.body.username;
     let email = req.body.email;
@@ -41,3 +42,5 @@ export default async function handler(req,res) {
     }
 
 };
+
+export default applyCorsMiddleware(handler);

@@ -1,6 +1,7 @@
 import { getToken } from "next-auth/jwt"
 import { getSession } from "next-auth/react"
 import { authOptions } from "../auth/[...nextauth]"
+import applyCorsMiddleware from "../cors"
 
 export default async (req, res) => {
   const session = await getSession({req})

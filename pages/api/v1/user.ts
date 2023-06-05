@@ -1,6 +1,8 @@
 import {authenticateToken} from '../../../utils/authTokenHandler'
 import {getAllUsers, getUserById} from '../../../prisma/userQueries'
-export default function handler(req, res) {
+import applyCorsMiddleware from '../cors';
+
+function handler(req, res) {
     
     //verify method
     if (req.method ==="GET") {
@@ -9,6 +11,8 @@ export default function handler(req, res) {
         return res.status(405).json({error: "Method not allowed"});
     }
 }
+
+export default applyCorsMiddleware(handler);
 
 function getUsers (req, res){
     //authenticate token
