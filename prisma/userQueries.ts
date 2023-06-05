@@ -40,7 +40,7 @@ async function getUserById(userId: string) {
 }
 
 async function checkUsernameIsExist(username: string) {
-  let check = prisma.user.findFirst({
+  let check = await prisma.user.findFirst({
     where: {
       username: username,
     }
