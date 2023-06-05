@@ -1,6 +1,7 @@
 import {authenticateToken} from '../../../../utils/authTokenHandler'
+import applyCorsMiddleware from '../../cors';
 
-export default function handler(req, res) {
+function handler(req, res) {
     
     //verify method
     if (req.method !=="GET") {
@@ -38,3 +39,5 @@ export default function handler(req, res) {
         }
     });
 }
+
+export default applyCorsMiddleware(handler);

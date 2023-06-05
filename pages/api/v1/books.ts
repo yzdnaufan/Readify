@@ -3,6 +3,9 @@
 import {authenticateToken} from '../../../utils/authTokenHandler'
 import {booksData} from '../../../lib/books'
 import {createBook, getAllBooks, getBookById, checkBookExists, Book, PartialBook, deleteBook, updateBook} from '../../../prisma/bookQueries'
+import applyCorsMiddleware from '../cors'
+import exp from 'constants'
+
 
 const BOOK_JSON_STRUCTURE = { 
     book_title: '',
@@ -16,7 +19,7 @@ const BOOK_JSON_STRUCTURE = {
 }
 
 
-export default function handler(req, res){
+function handler(req, res){
     //verify method
     if(req.method === "GET") {
         getBooksHandler(req,res)
@@ -30,6 +33,8 @@ export default function handler(req, res){
         return res.status(405).json({error: "Method not allowed"});
     }
 }
+
+export default applyCorsMiddleware(handler);
 
 function deleteBooksHandler(req,res){
     //authenticate token
