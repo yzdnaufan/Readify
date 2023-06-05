@@ -33,7 +33,8 @@ async function getBooksByTitle(keyword: string) {
   return prisma.book.findMany({
     where: {
       book_title: {
-        contains: keyword
+        contains: keyword,
+        mode: 'insensitive'
       }
     }
   });
