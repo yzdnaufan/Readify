@@ -1,6 +1,6 @@
 import prisma from './index'
 
-interface Book {
+export interface Book {
   book_title: string;
   ISBN: string;
   authors: string[];
@@ -11,7 +11,7 @@ interface Book {
   image_url: string;
 }
 
-interface PartialBook extends Partial<Book> {}
+export interface PartialBook extends Partial<Book> {}
 
 async function createBook(bookData: Book) {
   return prisma.book.create({
@@ -54,6 +54,21 @@ async function deleteBook(id: string) {
     },
   });
 }
+
+async function checkBookExists(bookTitle: string) {
+  try {
+    const existingBook = await prisma.book.findFirst({
+      where: {
+        book_title: bookTitle,
+      },
+    });
+
+    return existingBook !== null; // Returns true if the book exists, false otherwise
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
   
 export {
   createBook, 
@@ -61,5 +76,6 @@ export {
   getBookById, 
   getBooksByTitle, 
   updateBook, 
-  deleteBook
+  deleteBook,
+  checkBookExists
 }

@@ -37,6 +37,8 @@ async function predictRatings() {
   const userIdInput = document.getElementById('userId');
   const userId = userIdInput.value;
 
+  loadModel();
+
   // Fetch the CSV file containing the book titles
   const response = await fetch('data/book_titles.csv');
   const csvData = await response.text();

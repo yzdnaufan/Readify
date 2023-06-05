@@ -1,5 +1,6 @@
 import {authenticateToken} from '../../../../utils/authTokenHandler'
 import {booksData} from '../../../../lib/books'
+import {getBookById} from '../../../../prisma/bookQueries'
 
 export default function handler(req, res) {
     
@@ -14,9 +15,10 @@ export default function handler(req, res) {
         try {
             let jsonBooks;
             // TODO : fetch book list from prisma
+            jsonBooks = await getBookById(req.query.id[0]);
 
-            // mock data
-            jsonBooks = booksData.find(book => book.book_id === req.query.id[0]);
+            // // mock data
+            // jsonBooks = booksData.find(book => book.book_id === req.query.id[0]);
 
             // check if book exists
             if (jsonBooks === undefined || jsonBooks === null) {
@@ -29,7 +31,7 @@ export default function handler(req, res) {
                 // book found
 
                 jsonBooks = await JSON.parse(JSON.stringify(jsonBooks));
-                return res.status(200).json({users: jsonBooks});
+                return res.status(200).json(jsonBooks);
             }
 
         } catch (err) {
