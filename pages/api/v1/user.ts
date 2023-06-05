@@ -1,23 +1,24 @@
 import {authenticateToken} from '../../../utils/authTokenHandler'
-
+import {getAllUsers, getUserById} from '../../../prisma/userQueries'
 export default function handler(req, res) {
     
     //verify method
-    if (req.method !=="GET") {
+    if (req.method ==="GET") {
+        getUsers(req, res);
+    }else {
         return res.status(405).json({error: "Method not allowed"});
     }
+}
 
+function getUsers (req, res){
     //authenticate token
     authenticateToken(req, res, async () => {
         // fetch user list
         try {
             let jsonUser;
             // TODO : fetch user list from prisma
-
-            // mock data
-            jsonUser = await fetch('https://jsonplaceholder.typicode.com/users');
-            jsonUser = await jsonUser.json();
-            return res.status(200).json({users: jsonUser});
+            jsonUser = await getAllUsers();
+            return res.status(200).json(jsonUser);
 
         } catch (err) {
             console.log(err)

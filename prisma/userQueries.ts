@@ -39,6 +39,15 @@ async function getUserById(userId: string) {
   })
 }
 
+async function checkUsernameIsExist(username: string) {
+  let check = prisma.user.findFirst({
+    where: {
+      username: username,
+    }
+  })
+  return check !== null;
+}
+
 async function register(username: string, email: string, password: string) {
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -56,5 +65,6 @@ export {
   getAllUsers,
   getUserById, 
   register, 
-  login
+  login,
+  checkUsernameIsExist
 }
